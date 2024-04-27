@@ -4,12 +4,12 @@ import java.awt.Toolkit;
 import com.login.BeanUser;
 import com.acceuil.acceuilframe;
 
-public class Signupframe extends javax.swing.JFrame {
+public class Signupframe1 extends javax.swing.JFrame {
 
     /**
      * Crée une nouvel form Loginframe
      */
-    public Signupframe() {
+    public Signupframe1() {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ic.png")));
         this.setResizable(false);
@@ -59,7 +59,7 @@ public class Signupframe extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel1.setText("INSCRIPTION ADMIN");
+        jLabel1.setText("INSCRIPTION USER");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/login/logo-isep-diamniadio.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -71,7 +71,7 @@ public class Signupframe extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(97, 97, 97))
         );
@@ -189,9 +189,9 @@ public class Signupframe extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addGap(20, 20, 20))
+                .addGap(17, 17, 17))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 610, 380));
@@ -223,7 +223,7 @@ public class Signupframe extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.hide();
-      Loginframe loginobj = new Loginframe();
+      Loginframe1 loginobj = new Loginframe1();
       loginobj.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -235,7 +235,7 @@ public class Signupframe extends javax.swing.JFrame {
         
         BeanUser Beanobj = new BeanUser(user,email,pass);
         Bal balobj = new Bal();
-        balobj.insertDataSiugnup(Beanobj);
+        balobj.insertDataSiugnup2(Beanobj);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -256,8 +256,12 @@ public class Signupframe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Signupframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Signupframe1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -267,7 +271,7 @@ public class Signupframe extends javax.swing.JFrame {
 
         /* Crée et afficher le formulaire */
         java.awt.EventQueue.invokeLater(() -> {
-            new Signupframe().setVisible(true);
+            new Signupframe1().setVisible(true);
         });
     }
     

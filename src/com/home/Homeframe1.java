@@ -9,53 +9,52 @@ import java.awt.Toolkit;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
-import com.home.Homeframe1;
+import com.home.Homeframe;
 
 /**
  *
  * @author Administrateur
  */
-public class Homeframe extends javax.swing.JFrame {
+public class Homeframe1 extends javax.swing.JFrame {
 
     /**
      * Creates new form homeFrame
      */
-    public Homeframe() {
+    public Homeframe1() {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ic.png")));
-        loadTable();
+        loadTable1();
     }
     
-    public void loadAllDattaIntoTable(List<Homebean> list){
-        DefaultTableModel dtn = (DefaultTableModel) jTable.getModel();
+    public void loadAllDattaIntoTable1(List<Homebean1> list){
+        DefaultTableModel dtn = (DefaultTableModel) jTable1.getModel();
         dtn.setRowCount(0);
         
-        for(Homebean bean : list){
+        for(Homebean1 bean : list){
             Vector v = new Vector();
             v.add(bean.getId());
-            v.add(bean.getPrenom());
-            v.add(bean.getNom());
-            v.add(bean.getSexe());
-            v.add(bean.getAge());
-            v.add(bean.getFiliere());
+            v.add(bean.getNom_prof());
+            v.add(bean.getCours());
+            v.add(bean.getSalle());
+            v.add(bean.getJour());
             v.add(bean.getMetier());
-            v.add(bean.getNote());
-            v.add(bean.getRemediation());
+            v.add(bean.getFiliere());
+            v.add(bean.getPromo());
             
             dtn.addRow(v);
         }
     }
     
-    public void loadTable(){
+    public void loadTable1(){
     Homebal bal = new Homebal();
-    List list = bal.LoadData();
-    loadAllDattaIntoTable(list);
+    List list = bal.LoadData1();
+    loadAllDattaIntoTable1(list);
 }
     public void clearTextFieldData(){
-        jTextFieldprenom.setText("");
-        jTextFieldnom.setText("");
-        jTextFieldfiliere.setText("");
-        jTextFieldmetier.setText("");
+        jTextFieldnom_p.setText("");
+        jTextFielddate.setText("");
+        jTextFieldmetier1.setText("");
+        jTextFieldpromo.setText("");
     }
 
     /**
@@ -80,28 +79,24 @@ public class Homeframe extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldnom = new javax.swing.JTextField();
-        jTextFieldprenom = new javax.swing.JTextField();
-        jTextFieldfiliere = new javax.swing.JTextField();
-        jComboBoxsexe = new javax.swing.JComboBox<>();
+        jTextFielddate = new javax.swing.JTextField();
+        jTextFieldnom_p = new javax.swing.JTextField();
+        jTextFieldmetier1 = new javax.swing.JTextField();
+        jComboBoxsalle = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonm = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jComboBoxdev = new javax.swing.JComboBox<>();
+        jButtoni = new javax.swing.JButton();
+        jButtone = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jTextFieldmetier = new javax.swing.JTextField();
+        jTextFieldpromo = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jComboBoxrem = new javax.swing.JComboBox<>();
-        jComboBoxage = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        jButtons = new javax.swing.JButton();
+        jTextFieldfiliere1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        jTextFieldcours = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -120,9 +115,10 @@ public class Homeframe extends javax.swing.JFrame {
         jLabel12.setText("Gestionaire Scolaire");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel13.setText("Tableau Etudiants");
+        jLabel13.setText("Tableau Cours");
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 0));
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Print");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +132,7 @@ public class Homeframe extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 570, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 607, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addGap(114, 114, 114)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,151 +190,113 @@ public class Homeframe extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel3.setText("Sexe :");
+        jLabel3.setText("Salle :");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel5.setText("Prénom:");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 90, 20));
+        jLabel5.setText("nom_Prof:");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 120, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel4.setText("Age:");
+        jLabel4.setText("Date:");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 90, 20));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel6.setText("Nom:");
+        jLabel6.setText("Cours:");
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 90, 20));
 
-        jTextFieldnom.setToolTipText("exemple: Lo");
-        jPanel4.add(jTextFieldnom, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 200, 40));
+        jTextFielddate.setToolTipText("exemple: Lo");
+        jPanel4.add(jTextFielddate, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 120, 30));
 
-        jTextFieldprenom.setToolTipText("exemple: Ibrahima");
-        jPanel4.add(jTextFieldprenom, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 200, 40));
+        jTextFieldnom_p.setToolTipText("exemple: Ibrahima");
+        jPanel4.add(jTextFieldnom_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 200, 40));
 
-        jTextFieldfiliere.setToolTipText("exemple: TIC");
-        jPanel4.add(jTextFieldfiliere, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 200, 30));
+        jTextFieldmetier1.setToolTipText("exemple: TIC");
+        jPanel4.add(jTextFieldmetier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 200, 30));
 
-        jComboBoxsexe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculin", "Femmin" }));
-        jComboBoxsexe.setToolTipText("");
-        jComboBoxsexe.setAutoscrolls(true);
-        jComboBoxsexe.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxsalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amphitéatre", "Atelier", "C101", "C102", "C103", "C104", "C110", "C111", "C112", "C113", "C114", "C201", "C202", "C203", "C204", "C210", "C211", "C212", "C213", "C214", "C301", "C302", "C303", "C304", "C310", "C311", "C312", "C313", "C314", " " }));
+        jComboBoxsalle.setToolTipText("");
+        jComboBoxsalle.setAutoscrolls(true);
+        jComboBoxsalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxsexeActionPerformed(evt);
+                jComboBoxsalleActionPerformed(evt);
             }
         });
-        jPanel4.add(jComboBoxsexe, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 100, 30));
+        jPanel4.add(jComboBoxsalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 100, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 204, 204));
         jLabel10.setText("Filiére:");
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 20));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 90, 20));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel11.setText("\\20");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, -1, 20));
-
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setText("Metre a jour");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonm.setBackground(new java.awt.Color(51, 51, 255));
+        jButtonm.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonm.setText("Metre a jour");
+        jButtonm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonmActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 100, 40));
+        jPanel4.add(jButtonm, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 100, 40));
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Cours");
+        jButton2.setText("Etudiant");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 80, 70));
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 80, 70));
 
-        jButton4.setBackground(new java.awt.Color(51, 255, 51));
-        jButton4.setText("Inscrire");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtoni.setBackground(new java.awt.Color(51, 255, 51));
+        jButtoni.setForeground(new java.awt.Color(255, 255, 255));
+        jButtoni.setText("Inscrire");
+        jButtoni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtoniActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 100, 40));
+        jPanel4.add(jButtoni, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 100, 40));
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 0));
-        jButton5.setText("Enlever");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtone.setBackground(new java.awt.Color(0, 0, 0));
+        jButtone.setForeground(new java.awt.Color(255, 255, 255));
+        jButtone.setText("Enlever");
+        jButtone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtoneActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 100, 40));
-
-        jComboBoxdev.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
-        jComboBoxdev.setToolTipText("");
-        jComboBoxdev.setAutoscrolls(true);
-        jComboBoxdev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxdevActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jComboBoxdev, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 50, 30));
+        jPanel4.add(jButtone, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 100, 40));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 204, 204));
         jLabel14.setText("Métier:");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 90, 20));
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 20));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel15.setText("Devoir:");
-        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 90, 20));
-
-        jTextFieldmetier.setToolTipText("exemple: DBE");
-        jPanel4.add(jTextFieldmetier, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 200, 30));
+        jTextFieldpromo.setToolTipText("exemple: DBE");
+        jPanel4.add(jTextFieldpromo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 200, 30));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel16.setText("Remediation:");
-        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 20));
+        jLabel16.setText("Promo:");
+        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, 20));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel17.setText("\\20");
-        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, 20));
-
-        jComboBoxrem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
-        jComboBoxrem.setToolTipText("");
-        jComboBoxrem.setAutoscrolls(true);
-        jComboBoxrem.addActionListener(new java.awt.event.ActionListener() {
+        jButtons.setBackground(new java.awt.Color(255, 0, 0));
+        jButtons.setForeground(new java.awt.Color(255, 255, 255));
+        jButtons.setText("Supprimer");
+        jButtons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxremActionPerformed(evt);
+                jButtonsActionPerformed(evt);
             }
         });
-        jPanel4.add(jComboBoxrem, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 50, 30));
+        jPanel4.add(jButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 100, 40));
 
-        jComboBoxage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27" }));
-        jComboBoxage.setToolTipText("");
-        jComboBoxage.setAutoscrolls(true);
-        jComboBoxage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxageActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jComboBoxage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 50, 30));
-
-        jButton6.setBackground(new java.awt.Color(255, 153, 0));
-        jButton6.setText("Supprimer");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 100, 40));
+        jTextFieldfiliere1.setToolTipText("exemple: DBE");
+        jPanel4.add(jTextFieldfiliere1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 200, 30));
 
         jButton7.setBackground(new java.awt.Color(255, 0, 0));
         jButton7.setText("Deconnexion");
@@ -347,32 +305,35 @@ public class Homeframe extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 100, -1));
+        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 100, 30));
+
+        jTextFieldcours.setToolTipText("exemple: Lo");
+        jPanel4.add(jTextFieldcours, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, 40));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 650, 560));
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "prenom", "nom", "sexe", "age", "filiere", "metier", "note", "remediation"
+                "id", "nom_prof", "cours", "salle", "jour", "metier", "filiere", "promo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMouseClicked(evt);
+                jTable1MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable);
+        jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, 650, 560));
 
@@ -382,110 +343,96 @@ public class Homeframe extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxsexeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxsexeActionPerformed
+    private void jComboBoxsalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxsalleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxsexeActionPerformed
+    }//GEN-LAST:event_jComboBoxsalleActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jComboBoxdevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxdevActionPerformed
+    private void jButtoniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxdevActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        String prenom = jTextFieldprenom.getText();
-        String nom = jTextFieldnom.getText();
-        String sexe = (String)jComboBoxsexe.getSelectedItem();
-        String age = (String)jComboBoxage.getSelectedItem();
-        String filiere = jTextFieldfiliere.getText();
-        String metier = jTextFieldmetier.getText();
-        String note = (String)jComboBoxdev.getSelectedItem();
-        String remediation = (String)jComboBoxrem.getSelectedItem();
+        String nom_prof = jTextFieldnom_p.getText();
+        String cours = jTextFieldcours.getText();
+        String salle = (String)jComboBoxsalle.getSelectedItem();
+        String jour = jTextFielddate.getText();
+        String metier = jTextFieldmetier1.getText();
+        String filiere = jTextFieldfiliere1.getText();
+        String promo = jTextFieldpromo.getText();
         
-        Homebean homebean = new Homebean (0,prenom ,nom,sexe,age,filiere,metier,note,remediation);
-        
+        Homebean1 homebean = new Homebean1(0,nom_prof,cours,salle,jour,filiere,metier,promo);
+       
         Homebal homeobj = new Homebal();
-        homeobj.insert(homebean);
-        loadTable();
+        homeobj.insert1(homebean);
+        loadTable1();
         clearTextFieldData();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jComboBoxremActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxremActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxremActionPerformed
-
-    private void jComboBoxageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxageActionPerformed
-
-    }//GEN-LAST:event_jComboBoxageActionPerformed
+    }//GEN-LAST:event_jButtoniActionPerformed
 
     int id = 0;
 
-    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        int row = jTable.getSelectedRow();
+        int row = jTable1.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(null, "Selection un element de la table a suprimmer ou modifier");
         
         }else{
-        id = (int) jTable.getValueAt(row, 0);
+        id = (int) jTable1.getValueAt(row, 0);
         Homebal bal = new Homebal();
-        Homebean bean = bal.returnAllDataToTextField(id);
-        jTextFieldprenom.setText(bean.getPrenom());
-        jTextFieldnom.setText(bean.getNom());
-        jComboBoxsexe.setSelectedItem(bean.getSexe());
-        jComboBoxage.setSelectedItem(bean.getAge());
-        jTextFieldfiliere.setText(bean.getFiliere());
-        jTextFieldmetier.setText(bean.getMetier());
-        jComboBoxdev.setSelectedItem(bean.getNote());
-        jComboBoxrem.setSelectedItem(bean.getRemediation());
+        Homebean1 bean = bal.returnAllDataToTextField1(id);
+        jTextFieldnom_p.setText(bean.getNom_prof());
+        jTextFieldcours.setText(bean.getCours());
+        jComboBoxsalle.setSelectedItem(bean.getSalle());
+        jTextFielddate.setText(bean.getJour());
+        jTextFieldmetier1.setText(bean.getMetier());
+        jTextFieldfiliere1.setText(bean.getFiliere());
+        jTextFieldpromo.setText(bean.getPromo());
         
                 
         }
-    }//GEN-LAST:event_jTableMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String prenom = jTextFieldprenom.getText();
-        String nom = jTextFieldnom.getText();
-        String sexe = (String)jComboBoxsexe.getSelectedItem();
-        String age = (String)jComboBoxage.getSelectedItem();
-        String filiere = jTextFieldfiliere.getText();
-        String metier = jTextFieldmetier.getText();
-        String note = (String)jComboBoxdev.getSelectedItem();
-        String remediation = (String)jComboBoxrem.getSelectedItem();
         
-        Homebean homebean = new Homebean(id,prenom,nom,sexe,age,filiere,metier,note,remediation);
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButtonmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonmActionPerformed
+        // TODO add your handling code here:
+        String nom_prof = jTextFieldnom_p.getText();
+        String cours = jTextFieldcours.getText();
+        String salle = (String)jComboBoxsalle.getSelectedItem();
+        String jour = jTextFielddate.getText();
+        String metier = jTextFieldmetier1.getText();
+        String filiere = jTextFieldfiliere1.getText();
+        String promo = jTextFieldpromo.getText();
+        
+        Homebean1 homebean1 = new Homebean1(id,nom_prof,cours,salle,jour,filiere,metier,promo);
         
         Homebal bal = new Homebal();
         
-        bal.updateData(homebean);
+        bal.updateData1(homebean1);
         
-        loadTable();
+        loadTable1();
         //clearTextFieldData();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonmActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Homeframe1 homeobj = new Homeframe1();
+        Homeframe homeobj = new Homeframe();
         homeobj.show();
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButtonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsActionPerformed
         // TODO add your handling code here:
         Homebal bal = new Homebal();
-        bal.deleteRecord(id);
-        loadTable();
+        bal.deleteRecord1(id);
+        loadTable1();
         //clearTextFieldData();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jButtonsActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButtoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoneActionPerformed
         // TODO add your handling code here:
         clearTextFieldData();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButtoneActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -511,46 +458,42 @@ public class Homeframe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Homeframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Homeframe1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Homeframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Homeframe1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Homeframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Homeframe1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Homeframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Homeframe1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Homeframe().setVisible(true);
+                new Homeframe1().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBoxage;
-    private javax.swing.JComboBox<String> jComboBoxdev;
-    private javax.swing.JComboBox<String> jComboBoxrem;
-    private javax.swing.JComboBox<String> jComboBoxsexe;
+    private javax.swing.JButton jButtone;
+    private javax.swing.JButton jButtoni;
+    private javax.swing.JButton jButtonm;
+    private javax.swing.JButton jButtons;
+    private javax.swing.JComboBox<String> jComboBoxsalle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -561,10 +504,12 @@ public class Homeframe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextFieldfiliere;
-    private javax.swing.JTextField jTextFieldmetier;
-    private javax.swing.JTextField jTextFieldnom;
-    private javax.swing.JTextField jTextFieldprenom;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldcours;
+    private javax.swing.JTextField jTextFielddate;
+    private javax.swing.JTextField jTextFieldfiliere1;
+    private javax.swing.JTextField jTextFieldmetier1;
+    private javax.swing.JTextField jTextFieldnom_p;
+    private javax.swing.JTextField jTextFieldpromo;
     // End of variables declaration//GEN-END:variables
 }
