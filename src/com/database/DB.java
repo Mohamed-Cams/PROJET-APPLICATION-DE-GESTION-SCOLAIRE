@@ -4,9 +4,8 @@
  */
 package com.database;
 
-import java.sql.Connection;
+import java.sql.*;
 import javax.swing.JOptionPane;
-import java.sql.DriverManager;
 /**
  *
  * @author Administrateur
@@ -16,7 +15,7 @@ public class DB {
     public static Connection con = null;
     
     public static void loadConnection(){
-    String url ="http://localhost/phpmyadmin/index.php?route=/database/structure&db=db";
+    String url ="jdbc:mysql://localhost:3306/db";
     String root = "root";
     String pass = "";
     
