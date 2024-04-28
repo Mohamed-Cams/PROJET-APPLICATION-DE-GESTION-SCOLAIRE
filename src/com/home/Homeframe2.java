@@ -5,11 +5,35 @@
 package com.home;
 
 import com.acceuil.acceuilframe;
+import com.database.DB;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.home.Homebal;
+import com.home.Homebean;
 import java.awt.Toolkit;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
 import com.home.Homeframe;
+import static com.home.Homeframe.createQR;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -24,6 +48,22 @@ public class Homeframe2 extends javax.swing.JFrame {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ic.png")));
         loadTable();
+    }
+    
+      public static void createQR(String data, String path,
+                                String charset, Map hashMap,
+                                int height, int width)
+        throws WriterException, IOException
+    {
+
+        BitMatrix matrix = new MultiFormatWriter().encode(
+            new String(data.getBytes(charset), charset),
+            BarcodeFormat.QR_CODE, width, height);
+
+        MatrixToImageWriter.writeToFile(
+            matrix,
+            path.substring(path.lastIndexOf('.') + 1),
+            new File(path));
     }
     
     public void loadAllDattaIntoTable(List<Homebean> list){
@@ -63,11 +103,12 @@ public class Homeframe2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButtonprint = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
+        jLabelPH = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,11 +129,11 @@ public class Homeframe2 extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel13.setText("Liste Etudiants et Note");
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 0));
-        jButton3.setText("Print");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonprint.setBackground(new java.awt.Color(255, 153, 0));
+        jButtonprint.setText("Print");
+        jButtonprint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonprintActionPerformed(evt);
             }
         });
 
@@ -107,7 +148,7 @@ public class Homeframe2 extends javax.swing.JFrame {
                 .addGap(114, 114, 114)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonprint, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(174, 174, 174))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -121,7 +162,7 @@ public class Homeframe2 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonprint, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,7 +218,7 @@ public class Homeframe2 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 1250, 490));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 990, 490));
 
         jButton7.setBackground(new java.awt.Color(255, 0, 0));
         jButton7.setText("Deconnexion");
@@ -188,19 +229,61 @@ public class Homeframe2 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, 100, -1));
 
+        jLabelPH.setText("QR");
+        jPanel1.add(jLabelPH, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 270, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1480, 790));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     int id = 0;
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-        // TODO add your handling code here:            
+        // TODO add your handling code here:  
+
+        int row = jTable.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(null, "Selection un element de la table a suprimmer ou modifier");
+        
+        }else{
+        id = (int) jTable.getValueAt(row, 0);
+        Homebal bal = new Homebal();
+        Homebean bean = bal.returnAllDataToTextField(id);
+          
+        String data = bean.getId()+"\n"+bean.getPrenom()+"\n"+bean.getNom()+"\n"+bean.getSexe()+"\n"+bean.getAge()+"\n"+bean.getFiliere()+"\n"+bean.getMetier()+"\n"+bean.getNote()+"\n"+bean.getRemediation();
+
+        // The path where the image will get saved
+        String path = "C:\\Users\\Administrateur\\Pictures\\qr\\qr.jpg";
+
+        // Encoding charset
+        String charset = "UTF-8";
+
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap
+            = new HashMap<EncodeHintType,
+                          ErrorCorrectionLevel>();
+
+        hashMap.put(EncodeHintType.ERROR_CORRECTION,
+                    ErrorCorrectionLevel.L);
+
+            try {
+                // Create the QR code and save
+                // in the specified folder
+                // as a jpg file
+                createQR(data, path, charset, hashMap, 163, 163);
+                BufferedImage bi = ImageIO.read(new File(path));
+                Image image = bi.getScaledInstance(163,163 ,Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(path);
+                jLabelPH.setText("");
+                jLabelPH.setIcon(icon);
+            } catch (WriterException ex) {
+                Logger.getLogger(Homeframe.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Homeframe.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+        }
     }//GEN-LAST:event_jTableMouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -209,6 +292,18 @@ public class Homeframe2 extends javax.swing.JFrame {
         accobj.show();
         this.hide();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButtonprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonprintActionPerformed
+        // TODO add your handling code here:
+        try{
+            String report = "C:\\Users\\Administrateur\\Documents\\NetBeansProjects\\Gestionaire\\src\\com\\home\\etudiant.jrxml";
+            JasperReport jr = JasperCompileManager.compileReport(report);
+            JasperPrint jp = JasperFillManager.fillReport(jr,null,DB.con);
+            JasperViewer.viewReport(jp, false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"error l'hors de l'imprime e"+e);
+        }
+    }//GEN-LAST:event_jButtonprintActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,12 +344,13 @@ public class Homeframe2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButtonprint;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelPH;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
