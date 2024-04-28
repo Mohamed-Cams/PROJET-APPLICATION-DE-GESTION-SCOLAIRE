@@ -58,7 +58,7 @@
                       <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="113" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jButtonprint" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -76,7 +76,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
-                          <Component id="jButton3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jButtonprint" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -133,7 +133,7 @@
                 <Property name="text" type="java.lang.String" value="Tableau Etudiants"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="jButtonprint">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="ff" type="rgb"/>
@@ -141,7 +141,7 @@
                 <Property name="text" type="java.lang.String" value="Print"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonprintActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -352,7 +352,7 @@
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="99" red="ff" type="rgb"/>
+                  <Color blue="cc" green="cc" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Metre a jour"/>
               </Properties>
@@ -380,14 +380,14 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="550" y="90" width="80" height="70"/>
+                  <AbsoluteConstraints x="570" y="20" width="80" height="70"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="ff" red="33" type="rgb"/>
+                  <Color blue="33" green="ff" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Inscrire"/>
               </Properties>
@@ -610,7 +610,7 @@
             <Component class="javax.swing.JButton" name="jButton6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="99" red="ff" type="rgb"/>
+                  <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Supprimer"/>
               </Properties>
@@ -636,6 +636,16 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="530" width="100" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelPH">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="QR"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="460" y="180" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

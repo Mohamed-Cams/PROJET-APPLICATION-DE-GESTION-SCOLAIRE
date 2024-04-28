@@ -5,11 +5,33 @@
 package com.home;
 
 import com.acceuil.acceuilframe;
+import com.database.DB;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.awt.Toolkit;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
 import com.home.Homeframe;
+import static com.home.Homeframe.createQR;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -25,6 +47,23 @@ public class Homeframe1 extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ic.png")));
         loadTable1();
     }
+    
+     public static void createQR(String data, String path,
+                                String charset, Map hashMap,
+                                int height, int width)
+        throws WriterException, IOException
+    {
+
+        BitMatrix matrix = new MultiFormatWriter().encode(
+            new String(data.getBytes(charset), charset),
+            BarcodeFormat.QR_CODE, width, height);
+
+        MatrixToImageWriter.writeToFile(
+            matrix,
+            path.substring(path.lastIndexOf('.') + 1),
+            new File(path));
+    }
+
     
     public void loadAllDattaIntoTable1(List<Homebean1> list){
         DefaultTableModel dtn = (DefaultTableModel) jTable1.getModel();
@@ -95,6 +134,7 @@ public class Homeframe1 extends javax.swing.JFrame {
         jTextFieldfiliere1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jTextFieldcours = new javax.swing.JTextField();
+        jLabelPH = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -250,7 +290,7 @@ public class Homeframe1 extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 80, 70));
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 80, 70));
 
         jButtoni.setBackground(new java.awt.Color(51, 255, 51));
         jButtoni.setForeground(new java.awt.Color(255, 255, 255));
@@ -310,6 +350,9 @@ public class Homeframe1 extends javax.swing.JFrame {
         jTextFieldcours.setToolTipText("exemple: Lo");
         jPanel4.add(jTextFieldcours, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, 40));
 
+        jLabelPH.setText("QR");
+        jPanel4.add(jLabelPH, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, -1));
+
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 650, 560));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -349,6 +392,14 @@ public class Homeframe1 extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        try{
+            String report = "C:\\Users\\Administrateur\\Documents\\NetBeansProjects\\Gestionaire\\src\\com\\home\\Cours.jrxml";
+            JasperReport jr = JasperCompileManager.compileReport(report);
+            JasperPrint jp = JasperFillManager.fillReport(jr,null,DB.con);
+            JasperViewer.viewReport(jp, false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"error l'hors de l'imprime e"+e);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtoniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoniActionPerformed
@@ -389,6 +440,36 @@ public class Homeframe1 extends javax.swing.JFrame {
         jTextFieldfiliere1.setText(bean.getFiliere());
         jTextFieldpromo.setText(bean.getPromo());
         
+         String data = jTextFieldnom_p.getText()+"\n"+jTextFieldcours.getText()+"\n"+jComboBoxsalle.getName()+"\n"+jTextFielddate.getText()+"\n"+jTextFieldfiliere1.getText()+"\n"+jTextFieldmetier1.getText()+"\n"+jTextFieldpromo.getText();
+
+        // The path where the image will get saved
+        String path = "C:\\Users\\Administrateur\\Pictures\\qr\\qr.jpg";
+
+        // Encoding charset
+        String charset = "UTF-8";
+
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap
+            = new HashMap<EncodeHintType,
+                          ErrorCorrectionLevel>();
+
+        hashMap.put(EncodeHintType.ERROR_CORRECTION,
+                    ErrorCorrectionLevel.L);
+
+            try {
+                // Create the QR code and save
+                // in the specified folder
+                // as a jpg file
+                createQR(data, path, charset, hashMap, 163, 163);
+                BufferedImage bi = ImageIO.read(new File(path));
+                Image image = bi.getScaledInstance(163,163 ,Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(path);
+                jLabelPH.setText("");
+                jLabelPH.setIcon(icon);
+            } catch (WriterException ex) {
+                Logger.getLogger(Homeframe.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Homeframe.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 
         }
         
@@ -499,6 +580,7 @@ public class Homeframe1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelPH;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
